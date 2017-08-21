@@ -1,0 +1,47 @@
+<launch>
+<arg name="bagname" default="/media/euclid/1tb/euclid"/>
+<arg name="topics"
+     default=
+     "
+/camera/color/camera_info
+/camera/color/image_raw/compressed
+/camera/color/sampling_data
+
+/camera/depth/image_raw/compressed
+/camera/depth/image_transcoded/compressed
+/camera/depth/points
+/camera/depth/sampling_data
+
+/camera/fisheye/camera_info
+/camera/fisheye/image_raw/compressed
+/camera/fisheye/sampling_data
+
+/camera/imu/data_raw
+/camera/imu/drop
+
+/hardware_status
+/node_status
+/usb_status
+/wifi_status
+/rosout
+/rosout_agg
+/tf
+/tf_static
+     "/>
+
+<!--
+OTHER TOPICS:
+<camera>/camera_info
+<camera>/image_raw/compressed // jpeg-encoded
+<camera>/image_raw/theora
+<depth_camera/image_transcoded
+<depth_camera>/image_raw/compressedDepth
+<camera>/sampling_data // type: realsense_camera/SamplingData; content: ASCII text representing timestamps and metadata
+
+/camera/ir/image_raw, ...
+/camera/ir2/image_raw, ...
+-->
+
+  <node pkg="rosbag" type="record" name="record" args="--output-prefix=$(arg bagname) $(arg topics)" />  
+
+</launch>
